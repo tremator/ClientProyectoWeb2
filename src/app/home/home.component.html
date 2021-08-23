@@ -1,0 +1,84 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+
+<section class="py-5 bg-primary text-light">
+    <div class="container">
+        <div class="row">
+            <form role="form" (ngSubmit) = "search()">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="form-group">
+                <input type="text" name="word" id="word" class="form-control input-sm floatlabel" placeholder="Word" [(ngModel)] = "form.word">
+                        </div>
+                    </div>
+                    
+                </div>
+
+                
+                <input type="submit" value="Go" class="btn btn-info btn-block">
+            
+            </form>
+            
+            <nav class="navbar fixed navbar-expand-md navbar-new-bottom">
+               
+                <div class="navbar-collapse collapse" id="navbar2">
+                    <h2>Categories</h2>
+                    
+                    <ul class="navbar-nav w-100 justify-content-center px-3" *ngFor = "let category of categories">
+                        <li class="nav-item active">
+                            <button class="nav-link" (click)="filter(category.id)">{{category.name}}</button>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </nav>
+            <button><a href="newsSources">News Sources</a></button>
+            <div *ngIf = "isAdmin"><button><a href="categories">Categories</a></button></div>
+            <button (click)="logOut()">logOut</button>
+            
+        </div>
+    </div>
+</section>
+<div id="sidebar-wrapper" class="sidebar-toggle">
+    <h2>tags</h2>
+    <ul class="sidebar-nav"*ngFor = "let tag of tags">
+        <li>
+            <button  (click)="tagsFilter(tag.tag)"><p>{{tag.tag}}</p></button>
+        </li>
+        
+      </ul>
+</div>
+
+<section class="services py-5 bg-light1 text-center">
+
+    <div class="container">
+       <div class="row">
+           <div class="col-xs-12 col-sm-6 col-md-6" *ngFor="let notice of news">
+    		    <div class="card bg-light mb-3">
+    		        <div class="card-body">
+                        <p>{{notice.date}}</p>
+    		           <a href="{{notice.link}}"> <i class="fa fa-tachometer fa-4x "></i></a>
+                       <p>Title: {{notice.title}}</p>
+                       <p>Category: {{notice.category.name}}</p>
+                        <p class="text-secondary">{{notice.description}}</p>
+                    	<h6><a href="{{notice.link}}">see more</a></h6>
+    		        </div>
+    		    </div>
+    		</div>
+    		
+    	   
+    	   
+       </div>
+    </div>
+</section>
+<section class="pt-2 bg-primary text-light">
+    <div class="container">
+        <div class="row">
+            <p>All Rights Reserved</p>
+        </div>
+    </div>
+</section>
